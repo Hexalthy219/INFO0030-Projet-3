@@ -14,7 +14,8 @@ int main(int argc, char **argv){
     
     GtkWidget *pLabel_Nombre1 = gtk_label_new("Nombre 1 : ");
     GtkWidget *pLabel_Nombre2 = gtk_label_new("Nombre 2 : ");
-    GtkWidget *pLabel_Nombre4 = gtk_label_new("bite");
+    GtkWidget *pLabel_Nombre3 = gtk_label_new("case 2");
+    GtkWidget *pLabel_Nombre4 = gtk_label_new("case 4");
 
     GtkWidget *pButton_addition = gtk_button_new_with_label("Addition");
 
@@ -26,6 +27,7 @@ int main(int argc, char **argv){
 
     gtk_box_pack_start(GTK_BOX(pVBox), pHBox, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(pHBox), pLabel_Nombre1, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(pHBox), pLabel_Nombre3, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(pVBox), pHBox2, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(pHBox2), pLabel_Nombre2, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(pHBox2), pLabel_Nombre4, TRUE, TRUE, 0);
