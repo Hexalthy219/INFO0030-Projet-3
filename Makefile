@@ -1,6 +1,6 @@
 ### 
 ## Makefile
-## INFO0030: Projet 2
+## INFO0030: Projet 3
 ## 
 ### 
 
@@ -14,21 +14,16 @@ LDFLAGS=`pkg-config --cflags --libs gtk+-2.0`
 
 # Files
 EXEC=calculatrice
-MODULES=main.c 
-OBJECTS=main.o 
+MODULES=main.c calculatrice.c 
+OBJECTS=main.o calculatrice.o
 
 # Documentation
-DOC= 
-
-# Librairie
-
-AR=ar
-RANLIB=ranlib
-LIBFILE=lib
+DOC = calculatrice.c calculatrice.h main.c
 
 
 ## Rules
 
+#compilation
 all: $(EXEC)
 
 calculatrice: $(OBJECTS)
@@ -37,7 +32,11 @@ calculatrice: $(OBJECTS)
 main.o: main.c
 	$(CC) -c main.c -o main.o $(CFLAGS)
 
+calculatrice.o: calculatrice.c
+	$(CC) -c calculatrice.c -o calculatrice.o $(CFLAGS)
 
+
+#compilation doc
 doc:all_doc clean_latex
 
 all_doc: $(DOC)
@@ -52,20 +51,11 @@ clean_latex:
 clean_doc:
 	rm -r doc
 
-lib: libpnm.a
-	mkdir -p lib
-	mv libpnm.a lib/libpnm.a
-
-libpnm.a:pnm.o
-	$(AR) rv $@ $?
-	$(RANLIB) $@
-
-clean_lib:
-	rm -r lib/
-
+#création archive
 archive:
 	tar -zcvf 
 
+#supp fichiers objets + executable
 clean:
 	rm -f *.o $(EXEC)
 

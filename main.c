@@ -1,34 +1,20 @@
+/**
+ * \file main.c
+ * \brief Ce fichier contient la fonction main() du programme de calculatrice d'addition.
+ * \author: Russe Cyril s170220
+ * \date: 18-04-2020
+ * 
+ */
+
 #include <stdlib.h>
-#include <gtk/gtk.h>
 #include <stdio.h>
+#include <gtk/gtk.h>
 
-typedef struct{
-    GtkWidget *pEntry1;
-    GtkWidget *pEntry2;
-    GtkWidget *pLabel;
-}Donnees;
-
-void addition(GtkWidget *pButton, gpointer data){
-    int n1, n2;
-    const char *sn1, *sn2;
-    char texte[100];
-
-    Donnees *test = (Donnees*) data;
-
-    sn1 = gtk_entry_get_text(GTK_ENTRY(test->pEntry1));
-    sn2 = gtk_entry_get_text(GTK_ENTRY(test->pEntry2));
-    n1 = atoi(sn1);
-    n2 = atoi(sn2);
-    printf("%d", n1);
-
-    sprintf(texte, "La somme vaut: %d", n1+n2);
-
-    gtk_label_set_text(GTK_LABEL(test->pLabel), texte);
-}
+#include "calculatrice.h"
 
 
 int main(int argc, char **argv){
-    Donnees *donnees = malloc(sizeof(Donnees));
+    Donnees *donnees = constructeur_Donnees();
     if(donnees==NULL)
         return -1;
 
@@ -44,9 +30,10 @@ int main(int argc, char **argv){
     GtkWidget *pLabel_somme = gtk_label_new(NULL);
     GtkWidget *pEntry_nbr1 = gtk_entry_new();
     GtkWidget *pEntry_nbr2 = gtk_entry_new();
-    donnees->pEntry1 = pEntry_nbr1;
-    donnees->pEntry2 = pEntry_nbr2;
-    donnees->pLabel = pLabel_somme;
+
+    set_Donnees_entry1(donnees, pEntry_nbr1);
+    set_Donnees_entry2(donnees, pEntry_nbr2);
+    set_Donnees_label(donnees, pLabel_somme);
 
     GtkWidget *pButton_addition = gtk_button_new_with_label("Addition");
 
@@ -73,6 +60,8 @@ int main(int argc, char **argv){
 
     gtk_widget_show_all(pFenetre);
     gtk_main(); 
-    free(donnees);
+
+    destructeur_Donnees(donnees);
+
     return EXIT_SUCCESS;
 }
