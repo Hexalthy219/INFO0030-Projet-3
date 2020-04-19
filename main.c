@@ -28,7 +28,6 @@ int main(int argc, char **argv){
 
     //fenêtre
     GtkWidget *pFenetre = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    // GtkWidget *pPopup = gtk_windwos_new(GTK_WINDOW_POPUP);
     //label
     GtkWidget *pLabel_Nombre1 = gtk_label_new("Nombre 1 : ");
     GtkWidget *pLabel_Nombre2 = gtk_label_new("Nombre 2 : ");
